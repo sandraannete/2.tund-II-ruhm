@@ -30,3 +30,11 @@
 	echo "õnne!";
 	
 ?>
+
+<br>
+
+<?php
+
+	echo date("d.F.Y H:i:s ");
+
+?>
