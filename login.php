@@ -6,7 +6,7 @@
 	//var_dump ($_POST);
 	
 	$signupEmailError = "";
-
+	$signupPasswordError = "";
 	
 	// on üldse olemas selline muutuja
 	if( isset( $_POST["signupEmail"] ) ) {
@@ -18,9 +18,24 @@
 			}
 	}
 
+	if( isset( $_POST["signupPassword"] ) ) {
+			
+			if(empty( $_POST["signupPassword"] ) ) {
+					
+					$signupPasswordError = "see väli on kohustuslik";
+					
+			} else {
+				//siia jõuan siis kui parool oli olemas isset
+				// parool ei olnud tühi empty
+				
+				if ( strlen($_POST["signupPassword"]) < 8 ) {
+					
+					$signupPasswordError = "Parool peab olema vähemalt 8 tähemärkki pikk";
+					
+				}
+			}
+	}
 ?>
-
-
 
 
 <!DOCTYPE html>
@@ -54,7 +69,7 @@
 		<input name="signupEmail" type="text"> <?php echo $signupEmailError; ?>
 		<br><br>
 		
-		<input name="Password" placeholder="Parool" type="signupPassword"> 
+		<input type="password" placeholder="Parool" name="signupPassword"> <?php echo $signupPasswordError; ?>
 		<br><br>
 		
 		<input type="submit" value="Loo kasutaja">
